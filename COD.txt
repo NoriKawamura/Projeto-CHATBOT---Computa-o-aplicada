@@ -1,0 +1,39 @@
+import telebot
+
+key_api = "5828258441:AAEL2JGiJtkeg2LCNRSTsYz5PK6s62nKpZI"
+
+bot = telebot.TeleBot(key_api)
+
+@bot.message_handler(commands=["opcao1"])
+def opcao1 (mensagem):bot.reply_to(mensagem, "Para se cadastrar é muito fácil! Você pode tanto baixar o aplicativo do nosso banco através do seu celular e clicar em cadastrar-se ou ir ao banco mais próximo e solicitar a um dos nossos funcionários que gostaria de abrir uma conta.")
+
+@bot.message_handler(commands=["opcao2"])
+def opcao2(mensagem):bot.reply_to(mensagem, "Você terá o controle total da sua conta bancária através do seu celular! podendo pagar contas, consultar seu saldo e muito mais, tudo através do nosso aplicativo.")
+
+@bot.message_handler(commands=["opcao3"])
+def opcao3(mensagem):bot.reply_to(mensagem, "Você pode tanto fazer uma ligação para o nosso SAC ou enviar um email para a gente! caso preferir, pode resolver qualquer assunto em uma das nossas unidades presenciais. Você pode ligar para: 55-11-40028922 ou enviar um email para oceanbank@gmail.com")
+
+@bot.message_handler(commands=["opcao4"])
+def opcao4(mensagem):bot.reply_to(mensagem, "Atualmente temos 5 unidades funcionando na capital de são paulo - pretendemos expandir em breve. as unidades são: Pinheiros, Tatuapé, Barra Funda, Itaquera e Vergueiro")
+
+@bot.message_handler(commands=["opcao5"])
+def opcao5(mensagem):bot.reply_to(mensagem, "Agradeço por entrar em contato conosco, tenha um ótimo dia!")
+
+def verificar(mensagem):
+    return True
+
+
+@bot.message_handler(func=verificar)
+def responder(mensagem):
+    texto = """
+    Olá! Aqui quem fala é o Robin, atendente virtual Ocean Bank!
+    Por favor, escolha um número para darmos continuidade ao atendimento (é só clicar no número!):
+        /opcao1 Como eu faço para me cadastrar no banco?
+        /opcao2 Quais são as vantagens de um banco digital?
+        /opcao3 Quero fazer uma reclamação!
+        /opcao4 Qual o banco mais próximo da minha casa? 
+        /opcao5 encerra o atendimento.
+     Qualquer outra resposta não irá funcionar! ainda estou em fase de desenvolvimento :)"""
+    bot.reply_to(mensagem, texto)
+
+bot.polling()
